@@ -1,23 +1,41 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.1.RELEASE'
 	id 'java'
+	id 'org.jetbrains.kotlin.jvm' version "1.3.60"
+	id 'io.spring.dependency-management' version "1.0.8.RELEASE"
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.shunya'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+compileTestKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "11"
+	}
+}
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.60") // Required for Kotlin integration
+	implementation("org.jetbrains.kotlin:kotlin-reflect:1.3.60")
+	implementation('com.fasterxml.jackson.module:jackson-module-kotlin')
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile 'io.rest-assured:json-path:4.1.2'
 	compile 'io.rest-assured:xml-path:4.1.2'
+	compile 'io.rest-assured:kotlin-extensions:4.1.2'
 	// https://mvnrepository.com/artifact/io.rest-assured/rest-assured
 	testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.1.2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
 }

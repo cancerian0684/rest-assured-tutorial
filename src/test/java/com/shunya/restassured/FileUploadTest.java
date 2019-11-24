@@ -1,7 +1,7 @@
 package com.shunya.restassured;
 
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,12 +18,13 @@ public class FileUploadTest {
     @Test
     public void fileUploadTest() {
         given()
-                .param("timestamp", new Date().getTime())
-                .multiPart(new File("/Users/MunishChandel/Desktop/Screenshot_1562584935.png"))
-                .accept(ContentType.JSON)
-                .expect()
-                .body("status", equalTo(false))
-                .when()
-                .post("http://localhost:8080/convert");
+            .param("timestamp", new Date().getTime())
+            .multiPart("file", new File("/home/munish/workspace/rest-assured-tutorial/build.gradle"))
+            .accept(ContentType.JSON)
+        .when()
+            .post("http://localhost:8080/fileupload")
+        .then()
+            .statusCode(200)
+            .body("success", equalTo(true));
     }
 }
