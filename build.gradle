@@ -26,11 +26,12 @@ dependencies {
 	implementation('com.fasterxml.jackson.module:jackson-module-kotlin')
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compile 'io.rest-assured:json-path:4.1.2'
-	compile 'io.rest-assured:xml-path:4.1.2'
-	compile 'io.rest-assured:kotlin-extensions:4.1.2'
+
+	testImplementation 'io.rest-assured:json-path:4.1.2'
+	testImplementation 'io.rest-assured:xml-path:4.1.2'
+	testImplementation 'io.rest-assured:kotlin-extensions:4.1.2'
 	// https://mvnrepository.com/artifact/io.rest-assured/rest-assured
-	testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.1.2'
+	testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.1.2'
 	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
