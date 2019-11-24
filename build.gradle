@@ -1,0 +1,23 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.1.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.shunya'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile 'io.rest-assured:json-path:4.1.2'
+	compile 'io.rest-assured:xml-path:4.1.2'
+	// https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+	testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.1.2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
