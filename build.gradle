@@ -30,6 +30,7 @@ dependencies {
 	testImplementation 'io.rest-assured:json-path:4.1.2'
 	testImplementation 'io.rest-assured:xml-path:4.1.2'
 	testImplementation 'io.rest-assured:kotlin-extensions:4.1.2'
+	testImplementation 'io.rest-assured:spring-mock-mvc:4.1.2'
 	// https://mvnrepository.com/artifact/io.rest-assured/rest-assured
 	testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.1.2'
 	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
