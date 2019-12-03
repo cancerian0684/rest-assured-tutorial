@@ -22,12 +22,17 @@ public class BasicAuthTest {
                 "  \"name\": \"Foo\"\n" +
                 "}";
 
-        given().auth().preemptive().basic(username, password)
+        given().log().uri()
+                .log().method()
+                .log().headers()
+                .log().body()
+                .auth().preemptive().basic(username, password)
                 .body(jsonBody)
                 .contentType(ContentType.JSON)
                 .when()
                 .post("http://localhost:8080/secured/hello")
                 .then()
+                .log().body()
                 .statusCode(200)
                 .body("success", equalTo(true))
                 .body("data", equalTo("hello Foo"));
