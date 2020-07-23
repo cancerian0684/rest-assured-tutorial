@@ -1,5 +1,6 @@
 package com.shunya.restassured;
 
+import org.intellij.lang.annotations.Language;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ public class DemoController {
     @RequestMapping(value = "/lotto", method = GET, produces = "application/json")
     @ResponseBody
     public String getPayload() {
-        String payload = "{\n" +
+        @Language("JSON") String payload = "{\n" +
                 "  \"lotto\":{\n" +
                 "    \"lottoId\":5,\n" +
                 "    \"winning-numbers\":[2,45,34,23,7,5,3],\n" +
