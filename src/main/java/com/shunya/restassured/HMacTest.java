@@ -1,6 +1,7 @@
 package com.shunya.restassured;
 
 import com.google.common.hash.Hashing;
+import com.google.common.io.BaseEncoding;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.HmacAlgorithms;
 import org.apache.commons.codec.digest.HmacUtils;
@@ -36,6 +37,7 @@ public class HMacTest {
 
     String generateHmac256(String message, byte[] key) throws InvalidKeyException, NoSuchAlgorithmException {
         byte[] bytes = hmac("HmacSHA256", key, message.getBytes());
+        BaseEncoding.base16().lowerCase().encode(bytes);
         return bytesToHex(bytes);
     }
 
