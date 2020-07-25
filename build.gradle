@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'org.springframework.boot' version '2.3.2.RELEASE'
 	id 'java'
 	id 'org.jetbrains.kotlin.jvm' version "1.3.72"
 	id 'io.spring.dependency-management' version "1.0.9.RELEASE"
@@ -26,6 +26,7 @@ dependencies {
 	implementation('com.fasterxml.jackson.module:jackson-module-kotlin')
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
 	testImplementation 'io.rest-assured:json-path:4.2.0'
 	testImplementation 'io.rest-assured:xml-path:4.2.0'
