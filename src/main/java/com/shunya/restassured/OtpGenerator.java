@@ -2,7 +2,6 @@ package com.shunya.restassured;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class OtpGenerator {
@@ -28,6 +27,17 @@ public class OtpGenerator {
         return otp.toString();
     }
 
+    public String generateV2(int maxLength, String allowedChars) {
+        final char[] characters = allowedChars.toCharArray();
+        byte[] randomBytes = new byte[maxLength];
+        secureRandom.nextBytes(randomBytes);
+        char[] chars = new char[randomBytes.length];
+        for (int i = 0; i < randomBytes.length; i++) {
+            chars[i] = characters[((randomBytes[i] & 0xFF) % characters.length)];
+        }
+        return new String(chars);
+    }
+
     public String generateInsecure(int maxLength, String allowedChars) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         final StringBuilder otp = new StringBuilder(maxLength);
@@ -47,6 +57,9 @@ public class OtpGenerator {
 
         String otp2 = otpGenerator.generate(8, "123456789ABCDE");
         System.out.println(otp2);
+
+        String otp3 = otpGenerator.generateV2(8, "123456789ABCDE");
+        System.out.println(otp3);
     }
 
 }
